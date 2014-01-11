@@ -1,0 +1,43 @@
+!!!
+%html
+  :css
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .clear {
+      clear: both;
+    }
+    .content {
+      width: 80%
+      margin: 0 auto
+    }
+    body > h1, a {
+      color: darkGreen;
+    }
+    .btn{
+      color: green;
+      padding: 20px;
+    }
+    .causes {
+      display: block;
+    }
+    .causes .cause {
+      width: 30%;
+      /*display: inline-block;*/
+      float: left;
+      color: darkGreen;
+      background: paleGreen;
+      margin-right: 2%
+    }
+
+  %head
+    %title DonaCoin - No-cost donations
+
+  %body
+    %a{ href: "/" }
+      %h1 DonaCoin
+    .content
+      = yield
