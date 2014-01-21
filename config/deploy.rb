@@ -1,13 +1,14 @@
 # configs
 
-app_name = "riotvan"
+app_name = "donacoin_web"
+
 
 # deploy
 
 require 'mina/bundler'
 require 'mina/git'
 
-set :domain,      'makevoid.com'
+set :domain,      'donacoin.com'
 set :deploy_to,   "/www/#{app_name}"
 set :repository,  "git://github.com/makevoid/#{app_name}"
 set :branch,      'master'
