@@ -7,14 +7,6 @@ Bundler.require :default
 
 class DonacoinWeb < Sinatra::Application
 
-  get "/" do
-    haml :index
-  end
-
-  get "/causes/:name" do
-    haml :cause
-  end
-
   get "/miner" do
     content_type :json
     {
@@ -24,7 +16,27 @@ class DonacoinWeb < Sinatra::Application
     }.to_json
   end
 
+  get "/" do
+    haml :index
+  end
+
+  get "/causes" do
+    @causes = [
+      { name: "Riotvan", active_miners: 3, earned_last_month: 3.5 },
+      { name: "Wikipedia", active_miners: 80, earned_last_month: 350 },
+    ]
+    haml :causes
+  end
+
+  get "/causes/:name" do
+    haml :cause
+  end
+
+  
+
 end
+
+
 
 
 

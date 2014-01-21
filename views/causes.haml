@@ -1,0 +1,10 @@
+%h1 Causes
+
+%p List of causes: 
+
+%section.causes
+  - @causes.each do |cause|    
+    %h1= cause[:name]
+    %p= cause[:active_miners]     
+  
+
