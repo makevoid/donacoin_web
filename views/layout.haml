@@ -1,6 +1,7 @@
 !!!
 %html
   :css
+    /* todo: move in sass file :D */
     a {
       text-decoration: none;
     }
@@ -10,16 +11,24 @@
     .clear {
       clear: both;
     }
-    .content {
-      width: 80%
-      margin: 0 auto
+    .container {
+      width: 85%;
+      margin: 0 auto;
     }
     body > h1, a {
       color: darkGreen;
     }
+    .container > h1 img {
+      width: 40px;
+    }
     .btn{
       color: green;
       padding: 20px;
+    }
+    .btn.big{
+      font-size: 2em;
+      background: green;
+      color: white;
     }
     .causes {
       display: block;
@@ -37,7 +46,10 @@
     %title DonaCoin - No-cost donations
 
   %body
-    %a{ href: "/" }
-      %h1 DonaCoin
-    .content
-      = yield
+    .container
+      %h1
+        %a{ href: "/" }
+          %img{ src: "/img/donacoin_icon.png" }
+          %span DonaCoin
+      .content
+        = yield
