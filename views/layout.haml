@@ -1,55 +1,19 @@
 !!!
 %html
-  :css
-    /* todo: move in sass file :D */
-    a {
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .clear {
-      clear: both;
-    }
-    .container {
-      width: 85%;
-      margin: 0 auto;
-    }
-    body > h1, a {
-      color: darkGreen;
-    }
-    .container > h1 img {
-      width: 40px;
-    }
-    .btn{
-      color: green;
-      padding: 20px;
-    }
-    .btn.big{
-      font-size: 2em;
-      background: green;
-      color: white;
-    }
-    .causes {
-      display: block;
-    }
-    .causes .cause {
-      width: 30%;
-      /*display: inline-block;*/
-      float: left;
-      color: darkGreen;
-      background: paleGreen;
-      margin-right: 2%
-    }
-
   %head
     %title DonaCoin - No-cost donations
-
+    %link{ href: "/css/main.css", rel: "stylesheet" }
+    
   %body
-    .container
-      %h1
-        %a{ href: "/" }
-          %img{ src: "/img/donacoin_icon.png" }
-          %span DonaCoin
-      .content
-        = yield
+    %nav.row-fluid
+      %ul
+        %li
+          %a{ href: "/download" } Download
+        %li
+          %a{ href: "/causes"   } Causes
+        %li
+          %a{ href: "/users"    } Users
+        %li
+          %a{ href: "/guides"   } Guides
+    .content
+      = yield

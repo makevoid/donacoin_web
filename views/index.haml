@@ -1,8 +1,9 @@
-
+.navbar
+  .antani
+  
 %h1
-  Let your computer donate money for a Cause
-
-
+  Let your computer donate money for a Cause!!!
+  
 %p e-coin mining based donation system
 
 %img{ src: "/img/screenshots/donacoin.png" }
@@ -14,30 +15,15 @@
 %p
   %a.btn.big{ href: "/" } Download
 
-
 %h3 List of causes
 
-
 .causes
-  .cause
-    %a{ href: "/causes/riotvan" }
-      %p
-        Support RiotVan
-      %p
-        RiotVan is an association that makes a magazine:
+  - for cause in @causes
+    .cause
+      %a{ href: "/causes/#{cause[:name]}" }
+        = cause[:name]  
+      %p= cause[:desc] 
 
-  .cause
-    %a{ href: "/causes/onlus_borgo" }
-      %p Support Onlus Borgo
-
-      %p Onlus ...
-      %p Onlus ... is starting new workshop activities, donate to buy learning materials and tools
-
-  .cause
-    %a{ href: "/causes/more" }
-      %p Support ....
-
-      %p Brief text....\
   .clear
 
 
@@ -79,26 +65,3 @@
 // more:
 
 
-// post here when ready: http://www.reddit.com/r/Bitcoin/comments/1rlcc9/bitcoin_mining_for_charity/
-
-
-
-// charities list
-
-// fsf
-// freedombox
-// wwf
-// mozilla
-// wikileaks
-// wikipedia
-
-// amnesty international
-// wwf
-// greenpeace
-// unicef
-
-// creative commons
-// movember
-
-// salvation army
-// save the children
