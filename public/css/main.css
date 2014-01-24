@@ -22,7 +22,7 @@ letter-spacing: 0.5px;
 a{
 color:#B81249;
 }a:hover{
-	color:#FB1657;
+color:#FB1657;
 }
 a,button{
 cursor: pointer;
@@ -55,9 +55,9 @@ line-height: 15.5px;
 font-weight:500;
 }
 .slogan{
-	font-size: 35px;
-	line-height: 37px;
-	text-align: center;
+font-size: 35px;
+line-height: 37px;
+text-align: center;
 }
 .hr{
 height: 0px;
@@ -164,25 +164,25 @@ color:#fff;
 color:#FB1657;
 }
 .nav-btn{
-	position: fixed;
-	z-index:999;
-	top:0;
-	font-size: 25px;
-	right:0;
-	background: #fefefe;
-	color:#000;
-	border:none;
-	line-height: 45px;
-	padding:3.5px 15px;
+position: fixed;
+z-index:999;
+top:0;
+font-size: 25px;
+right:0;
+background: #fefefe;
+color:#000;
+border:none;
+line-height: 45px;
+padding:3.5px 15px;
 }
 .logo{
-	max-width: 130px;
-	float: left;
+max-width: 130px;
+float: left;
 }
 footer{
-	line-height: 35px;
-	clear:both;
-	font-size: 13px;
-	font-variant: small-caps;
-	border-top:1px solid #ddd;
+line-height: 35px;
+clear:both;
+font-size: 13px;
+font-variant: small-caps;
+border-top:1px solid #ddd;
 }
