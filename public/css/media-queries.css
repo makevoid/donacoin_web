@@ -1,0 +1,26 @@
+/*Screen less than 800px */
+@media screen and (min-width:0px) and (max-width:800px) {
+[class*="span"] {
+	width:100% !important;
+}
+nav ul{
+	position: absolute;
+	z-index:999;
+	top:43px;
+	width:100%;
+	float: left;
+	left:0;
+	right:0;
+	padding:20px 0;
+	background: rgba(0,0,0,0.8);
+}nav ul li{
+	display: list-item;
+	float: none;
+	
+}nav ul li a{
+	background: #333;
+	font-size: 20px;
+	line-height: 35px;
+	width: 100%;
+}
+}

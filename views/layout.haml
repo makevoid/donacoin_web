@@ -3,17 +3,28 @@
   %head
     %title DonaCoin - No-cost donations
     %link{ href: "/css/main.css", rel: "stylesheet" }
-    
+    %link{ href: "/css/media-queries.css", rel: "stylesheet" }
+    %link{ href: "/vendor/fontawesome/css/font-awesome.css", rel: "stylesheet" }
   %body
-    %nav.row-fluid
-      %ul
-        %li
-          %a{ href: "/download" } Download
-        %li
-          %a{ href: "/causes"   } Causes
-        %li
-          %a{ href: "/users"    } Users
-        %li
-          %a{ href: "/guides"   } Guides
-    .content
+  
+    %a.nav-button{ href:"javascript:void(0)" }
+      %i.fa-bars
+    %nav
+      .row-fluid
+        .span2.logo
+          %a
+            %img{ src:"/img/logo.png" }
+        .span8
+          %ul
+            %li
+              %a{ href: "/download" } Download
+            %li
+              %a{ href: "/causes"   } Causes
+            %li
+              %a{ href: "/users"    } Users
+            %li
+              %a{ href: "/guides"   } Guides
+   
+    .content  
       = yield
+    %footer
