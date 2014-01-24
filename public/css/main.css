@@ -19,10 +19,14 @@ color:#111;
 line-height: 1.3;
 letter-spacing: 0.5px;
 }
+a{
+color:#8B074B;
+}a:hover{
+	color:orange;
+}
 a,button{
 cursor: pointer;
 text-decoration: none;
-color:inherit;
 margin:0;
 padding:0;
 font-size: inherit;
@@ -137,11 +141,11 @@ width:90%;
 width:100%;
 }
 nav{
-background:#3B3B3A;
+background:#8B074B;
 position: fixed;
 top:0;
 min-width: 100%;
-height:45px;
+height:40px;
 padding:7px 0 5px 0 ;
 }
 nav ul li {
@@ -150,8 +154,8 @@ display: inline;
 font-size:14.5px;
 padding:0 2%;
 color:#fff;
-}nav ul li a:hover{
-color:cyan;
+}nav ul li a:hover,nav ul li a.active{
+color:#FC2A81;
 }
 .nav-btn{
 	position: fixed;
@@ -159,13 +163,20 @@ color:cyan;
 	top:0;
 	font-size: 25px;
 	right:0;
-	background: #333;
+	background: #fefefe;
 	color:#000;
 	border:none;
 	line-height: 45px;
-	padding:5px 15px;
+	padding:3.5px 15px;
 }
 .logo{
 	max-width: 130px;
 	float: left;
+}
+footer{
+	line-height: 35px;
+	clear:both;
+	font-size: 13px;
+	font-variant: small-caps;
+	border-top:1px solid #ddd;
 }
