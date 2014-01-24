@@ -4,11 +4,11 @@
     %title DonaCoin - No-cost donations
     %link{ href: "/css/main.css", rel: "stylesheet" }
     %link{ href: "/css/media-queries.css", rel: "stylesheet" }
-    %link{ href: "/vendor/fontawesome/css/font-awesome.css", rel: "stylesheet" }
+    %link{ href: "/vendor/fontawesome/css/font-awesome.min.css", rel: "stylesheet" }
+    %script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}
   %body
   
-    %a.nav-button{ href:"javascript:void(0)" }
-      %i.fa-bars
+    %button.nav-btn.hide{ href:"javascript:void(0)",onclick:"$('nav ul').fadeToggle(0)" } lll
     %nav
       .row-fluid
         .span2.logo

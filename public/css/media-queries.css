@@ -6,21 +6,30 @@
 nav ul{
 	position: absolute;
 	z-index:999;
-	top:43px;
+	top:41px;
 	width:100%;
+	border-top:2px solid #333;
 	float: left;
 	left:0;
 	right:0;
 	padding:20px 0;
 	background: rgba(0,0,0,0.8);
+	display: none;
 }nav ul li{
 	display: list-item;
 	float: none;
+	margin:10px 0;
+	text-align: center;
 	
 }nav ul li a{
-	background: #333;
 	font-size: 20px;
 	line-height: 35px;
-	width: 100%;
+	margin:0 auto;
+	padding:2% 6%;
+	border-radius: 5px;
+	
+}
+.nav-btn{
+	display: inherit;
 }
 }
