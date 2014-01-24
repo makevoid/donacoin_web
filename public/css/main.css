@@ -20,9 +20,9 @@ line-height: 1.3;
 letter-spacing: 0.5px;
 }
 a{
-color:#B81249;
-}a:hover{
 color:#FB1657;
+}a:hover{
+color:#B81249;
 }
 a,button{
 cursor: pointer;
