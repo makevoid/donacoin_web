@@ -37,26 +37,29 @@ font-size: 12px;
 i{
 font-size: inherit;
 }
+h1,h2,h3,h4,h5,h6{
+	margin:10px 0;
+}
 h1{
-font-size: 21px;
-line-height: 22.5px;
+font-size: 26px;
+line-height: 28.5px;
 font-weight:500;
 }h2{
-font-size:18px;
-line-height: 19.5px;
+font-size:21px;
+line-height: 22.5px;
 font-weight:500;
 }h3{
-font-size:16.5px;
-line-height: 17.5px;
+font-size:19.5px;
+line-height: 20.5px;
 font-weight:500;
 }h4{
-font-size:14px;
-line-height: 15.5px;
+font-size:16px;
+line-height: 17.5px;
 font-weight:500;
 }
 .slogan{
-font-size: 35px;
-line-height: 37px;
+font-size: 38px;
+line-height: 42px;
 text-align: center;
 }
 .hr{
@@ -186,3 +189,47 @@ font-size: 13px;
 font-variant: small-caps;
 border-top:1px solid #ddd;
 }
+.btn{
+margin:0 auto;
+padding:5px 3%;
+font-size: 15px;
+border:none;
+background:#EAF1EF ;
+width: 100%;
+border-radius:3px;
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+-o-border-radius:3px;
+-ms-border-radius:3px;
+}
+.btn:hover:focus,.btn:focus,.btn:focus:hover,.btn:active,.btn:hover:active{
+-webkit-box-shadow: 1px 1px 1.5px 0px rgba(0,0,0,0.1) inset;
+box-shadow:1px 1px 1.5px 0px rgba(0,0,0,0.1) inset;
+opacity:1;
+}.btn:hover{
+opacity:0.7;
+}
+.btn-small{
+padding:3px 2%;
+font-size: 13px;
+}
+.btn-option{
+border-radius:20px;
+background: #fff;
+}
+.btn-medium{
+font-size:17px;
+padding:9.5px inherit;
+}
+.btn-big{
+padding-top:12px ;
+padding-bottom:12px ;
+font-size:23px;
+}
+.btn-primary{
+background: #23D19A;
+box-shadow:0px 0px 0px 1px rgba(0,0,0,0.15) inset;
+color:#fff;
+}.btn-primary:hover{
+	color:#fff;
+};

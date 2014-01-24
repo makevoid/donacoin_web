@@ -1,60 +1,71 @@
 .row-fluid
+  .separator15
   %h1.slogan
     Let your computer donate money for a Cause!
   %h2.centered-content.muted 
     %i.fa-bitcoin
       e-coin mining based donation system
+  .separator15
   .centered-content
     %img{ src: "/img/screenshots/donacoin.png" }
     %img{ src: "/img/screenshots/donacoin2.png" }
+  .separator30
 .hr
 .row-fluid
-  %p
-    %strong Start mining for a cause!
-  %p
-    %a.btn.big{ href: "/" } Download
-  %h3 List of causes
-  .causes
-    - for cause in @causes
-      .cause
-        %a{ href: "/causes/#{cause[:name]}" }
-          = cause[:name]  
-        %p= cause[:desc] 
+  .span7
+    .row-fluid.centered-content
+      %p
+        .separator5
+        %h1
+          Start mining for a cause!
+        .separator10
+        %p
+          %a.row-fluid.btn.btn-big.btn-primary{ href: "/" } Download
+        .separator10
+      .hr
+    %h3 List of causes
+    .causes
+      - for cause in @causes
+        .cause
+          %a{ href: "/causes/#{cause[:name]}" }
+            = cause[:name]  
+          %p= cause[:desc] 
+      .clear
+  .span3.highlight
+    .row-fluid
+      .row-fluid
+        %h2 More info
+        %h2.muted Processing power to coins
 
-    .clear
-  %h2 More info:
-
-  %h3 Processing power to coins
-
-  %p BitCoin, Litecoin and other electronic coins ( or crypto currencies, how do you want to call them :) ) rewards people that give theirs cpu. A person giving you money? No. The protocol! Why? To remain "alive" (working). Read more about this here: <DuckDuckGo Search: crypto currencies mining>
-
-
-  %h3 Coins to Cause
-
-  %p
-    The Cause (ngo/project/association/team) will get money as a donation from us or from
-    %a{ href: "/admin" } the admin
-    managing the project
-
-
-  %h2 Lower fees than Paypal!
-
-  %p Paypal is the most used donation "system" in the world, we aim to change that, his current fee (2.2% + 0.30$) is related to Credit Card processing fee, we use e-coins, there is no such thing in a distributed system. We aim to reach the 2% fee
-
-  /
-    A level more: Managed mining?
-
-    %h3 Coins to Admins
-
-    %p DonaCoin will be automatic some day, now it needs admins, admins are rewarded with some percentage (it should be lower than 2.9%, that is the standard credit-card transaction), becoming an
-    %a{ href: "/admin" } admin
-    is fairly simple, Read more about creating your DonaCoin cause and becoming an admin here:
-    %a{ href: "/become_admin" } /Become_Admin
-
-    %p Note: admins must be trusted people, you must know admins in real life, ideally any computer-nerd friend that you have can become an admin.
+        %p BitCoin, Litecoin and other electronic coins ( or crypto currencies, how do you want to call them :) ) rewards people that give theirs cpu. A person giving you money? No. The protocol! Why? To remain "alive" (working). Read more about this here: <DuckDuckGo Search: crypto currencies mining>
 
 
+        %h2.muted Coins to Cause
 
-// more:
+        %p
+        The Cause (ngo/project/association/team) will get money as a donation from us or from
+        %a{ href: "/admin" } the admin
+        managing the project
+
+
+        %h2.muted Lower fees than Paypal!
+
+        %p Paypal is the most used donation "system" in the world, we aim to change that, his current fee (2.2% + 0.30$) is related to Credit Card processing fee, we use e-coins, there is no such thing in a distributed system. We aim to reach the 2% fee
+
+        /
+        A level more: Managed mining?
+
+        %h2.muted Coins to Admins
+
+        %p DonaCoin will be automatic some day, now it needs admins, admins are rewarded with some percentage (it should be lower than 2.9%, that is the standard credit-card transaction), becoming an
+        %a{ href: "/admin" } admin
+        is fairly simple, Read more about creating your DonaCoin cause and becoming an admin here:
+        %a{ href: "/become_admin" } /Become_Admin
+
+        %p Note: admins must be trusted people, you must know admins in real life, ideally any computer-nerd friend that you have can become an admin.
+
+
+
+  // more:
 
 
