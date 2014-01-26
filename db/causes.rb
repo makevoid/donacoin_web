@@ -61,6 +61,8 @@
     url: "www.terresolidali.org",
     desc: "E' un’organizzazione di solidarietà internazionale senza fini di lucro che realizza progetti di sviluppo nei paesi del Sud del Mondo.",
   },
+  # http://www.vispe.it
+  # http://www.mlfm.it
 
   # Local Indipendent project [Florence, Italy]
   {
