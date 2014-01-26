@@ -1,14 +1,16 @@
-- cause_name = params # todo
-- cause = {}
--# to_mhash
--# cause = CAUSES[cause_name]
+.row-fluid
+  %h1
+    Cause: #{@cause[:label]}
+    %span.small [#{@cause[:name]}]
 
-%h1 Cause: #{"name of the cause from params: #{cause[:name]}"}
+  %p #{@cause[:desc]}
 
-%p Brief cause text (\#{cause[:intro]})
+  %p Wikipedia
 
-%a.btn
+  %section
+    %h1 Top Donors
 
-
-%h3 More
-%p More detailed infos cause text (\#{cause[:text]})
+    %ul
+      - for donor in Donor.all
+        %li
+          %a{ href: "/donors/#{donor[:username]}" }= donor[:username]

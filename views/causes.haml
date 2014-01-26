@@ -1,10 +1,13 @@
-%h1 Causes
+.row-fluid
+  %h1 Causes
 
-%p List of causes: 
+  %p List of causes:
 
-%section.causes
-  - @causes.each do |cause|    
-    %h1= cause[:name]
-    %p= cause[:active_miners]     
-  
+  %section.causes
+    - @causes.each do |cause|
+      %h1
+        %a{ href: "/causes/#{cause[:name]}" }
+          = cause[:name]
+      %p= cause[:active_miners]
+
 

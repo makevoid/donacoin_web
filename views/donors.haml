@@ -1,0 +1,11 @@
+.row-fluid
+  %h1 Donors
+
+  %p Donacoin and all the partecipating causes and projects thank all the donors for the amount donated. Here's a chart of our best donators:
+
+  %h1 Top Donors
+
+  %ul
+    - for donor in @donors
+      %li
+        %a{ href: "/donors/#{donor[:username]}" }= donor[:username]

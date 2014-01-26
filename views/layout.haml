@@ -5,44 +5,44 @@
     %link{ href: "/css/main.css", rel: "stylesheet" }
     %link{ href: "/css/media-queries.css", rel: "stylesheet" }
     %link{ href: "/vendor/fontawesome/css/font-awesome.min.css", rel: "stylesheet" }
-    %script{src:"http://code.jquery.com/jquery-1.10.1.min.js"}
+    %script{src:"/js/jquery.js"}
   %body
-  
+
     %button.nav-btn.hide{ href:"javascript:void(0)",onclick:"$('nav ul').fadeToggle(0)" }
       %i.fa.fa-bars
     %nav
       .row-fluid
         .span2.logo
-          %a
+          %a{ href: "/" }
             %img{ src:"/img/logo.png" }
         .span8
           %ul
             %li
-              %a{ href: "/download" } 
+              %a{ href: "/download" }
                 %i.fa.fa-download
                 Download
             %li
               %a{ href: "/causes"   } Causes
             %li
-              %a{ href: "/users"    } Users
+              %a{ href: "/donors"   } Donors
             %li
-              %a{ href: "/guides"   } Guides
+              %a{ href: "/guide"   } Guide
     .separator30
     .separator30
-    .content  
+    .content
       = yield
     %footer
-      .span2.centered-content  
-        Copyright © Donacoin 2014
+      .span2.centered-content
+        Copyright © Donacoin #{Time.now.year}
       .span8.centered-content
         .span2
-          %a terms and conditions
+          %a{ href: "/terms" } terms and conditions
         .span1
-          %a privacy
+          %a{ href: "/privacy" } privacy
         .span1
-          %a contacts
+          %a{ href: "/contacts" } contacts
         .span2.pull-right
-          %a.muted{href:"http://bitcoin.org",target:"_blank"}
+          %a.muted{ href:"http://bitcoin.org", target:"_blank" }
             We
             %i.fa.fa-heart
             %i.fa.fa-bitcoin

@@ -2,7 +2,7 @@
   .separator15
   %h1.slogan
     Let your computer donate money for a Cause!
-  %h2.centered-content.muted 
+  %h2.centered-content.muted
     %i.fa.fa-bitcoin
       e-coin mining based donation system
   .separator15
@@ -20,7 +20,7 @@
           Start mining for a cause!
         .separator10
         %p
-          %a.row-fluid.btn.btn-big.btn-primary{ href: "/" } 
+          %a.row-fluid.btn.btn-big.btn-primary{ href: "/" }
             %i.fa.fa-download
             Download
         .separator10
@@ -30,8 +30,8 @@
       - for cause in @causes
         .cause
           %a{ href: "/causes/#{cause[:name]}" }
-            = cause[:name]  
-          %p= cause[:desc] 
+            = cause[:name]
+          %p= cause[:desc]
       .clear
   .span3.highlight
     .row-fluid
@@ -65,8 +65,5 @@
 
         %p Note: admins must be trusted people, you must know admins in real life, ideally any computer-nerd friend that you have can become an admin.
 
-
-
-  // more:
 
 
