@@ -26,10 +26,10 @@
     = haml :_download
     %h3 Top causes
     .causes
-      - for cause in @causes
+      - for cause in @causes[0..4]
         .cause
           %a{ href: "/causes/#{cause[:name]}" }
-            = cause[:name]
+            = cause[:label]
           %p= cause[:desc]
       .clear
   .span3.highlight

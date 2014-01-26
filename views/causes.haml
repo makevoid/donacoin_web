@@ -7,8 +7,9 @@
     - @causes.each do |cause|
       %h1
         %a{ href: "/causes/#{cause[:name]}" }
-          = cause[:name]
-      %p= cause[:active_miners]
+          = cause[:label]
+      %p= cause[:desc]
+      / TODO: %p= cause[:active_miners] || cause[:total_donations]
 
 
 

@@ -37,4 +37,7 @@ display: block;
 .nav-btn{
 display: inherit;
 }
+.download_icon {
+  width: 100px;
+}
 }
