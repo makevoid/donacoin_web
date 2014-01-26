@@ -1,4 +1,4 @@
-# DonacoinWeb 
+# DonacoinWeb
 ### Web GUI for Donacoin project
 
 install:
@@ -16,7 +16,7 @@ run:
 
 
 
-// charities list
+// charities list to auto-add
 
 // fsf
 // freedombox
