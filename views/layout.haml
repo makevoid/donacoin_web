@@ -34,16 +34,16 @@
     .content
       = yield
     %footer
-      .span2.centered-content
-        Copyright © Donacoin #{Time.now.year}
-      .span8.centered-content
-        .span2
-          %a{ href: "/terms" } terms and conditions
-        .span1
-          %a{ href: "/privacy" } privacy
-        .span1
+      %ul.row-fluid
+        %li
+          Copyright © Donacoin #{Time.now.year} &nbsp;&nbsp;&nbsp;
+        %li
+          %a{ href: "/terms" } terms and conditions &nbsp;&nbsp;&nbsp;
+        %li
+          %a{ href: "/privacy" } privacy &nbsp;&nbsp;&nbsp;
+        %li
           %a{ href: "/contacts" } contacts
-        .span2.pull-right
+        %li.pull-right.desktop
           %a.muted{ href:"http://bitcoin.org", target:"_blank" }
             We
             %i.fa.fa-heart

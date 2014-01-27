@@ -43,4 +43,8 @@ display: inherit;
 .download_icon {
   width: 100px;
 }
+footer ul li{
+	text-align:center;
+	display: list-item;
+}
 }
