@@ -201,16 +201,15 @@ max-width: 130px;
 float: left;
 }
 footer{
-line-height: 28px;
-clear:both;
-min-height: 28px;
-padding:5px;
 font-size: 10px;
+line-height: 20px;
+clear:both;
 text-transform: uppercase;
 border-top:1px solid #ddd;
 }
 footer ul li{
 display: inline;
+padding-bottom:7px;
 }
 .btn{
 margin:0 auto;
