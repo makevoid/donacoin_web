@@ -39,7 +39,7 @@ i{
 font-size: inherit;
 }
 h1,h2,h3,h4,h5,h6{
-	margin:10px 0;
+margin:10px 0;
 }
 h1{
 font-size: 26px;
@@ -59,7 +59,7 @@ line-height: 17.5px;
 font-weight:500;
 }
 .blank{
-	background-color:#fff;
+background-color:#fff;
 }
 .slogan{
 font-size: 38px;
@@ -89,8 +89,8 @@ display: inherit;
 background-color: #F4F6F6;
 }
 .well{
-	padding:3% 0;
-	box-shadow:0px 0px 0px 1px #ddd;
+padding:3% 0;
+box-shadow:0px 0px 0px 1px #ddd;
 }
 .pull-right{
 float:right;
@@ -157,14 +157,14 @@ width:90%;
 width:100%;
 }
 .page-right{
-	background:#eaeaea;
-	width:29%;
-	margin:20px 0;
+background:#eaeaea;
+width:29%;
+margin:20px 0;
 }.page-left{
-	width:70%;
-	margin:20px 0;
-	margin-right:1%;
-	box-shadow:0px 0px 0px 1px #ddd;
+width:70%;
+margin:20px 0;
+margin-right:1%;
+box-shadow:0px 0px 0px 1px #ddd;
 }
 nav{
 background:#5E4953;
@@ -210,7 +210,7 @@ text-transform: uppercase;
 border-top:1px solid #ddd;
 }
 footer ul li{
-	display: inline;
+display: inline;
 }
 .btn{
 margin:0 auto;
@@ -254,5 +254,5 @@ background: #FC224A;
 box-shadow:0px 0px 0px 1px rgba(0,0,0,0.15) inset;
 color:#fff;
 }.btn-primary:hover{
-	color:#fff;
+color:#fff;
 };

@@ -1,8 +1,8 @@
 /*Screen less than 800px */
 @media screen and (min-width:0px) and (max-width:850px) {
-	.desktop{
-		display:none;
-	}
+.desktop{
+	display:none;
+}
 [class*="span"] {
 width:100%;
 }
@@ -41,10 +41,10 @@ display: block;
 display: inherit;
 }
 .download_icon {
-  width: 100px;
+width: 100px;
 }
 footer ul li{
-	text-align:center;
-	display: list-item;
+text-align:center;
+display: list-item;
 }
 }
