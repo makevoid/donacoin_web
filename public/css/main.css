@@ -206,8 +206,10 @@ max-width: 130px;
 float: left;
 }
 footer{
-line-height: 35px;
+line-height: 28px;
 clear:both;
+min-height: 28px;
+padding:5px;
 font-size: 10px;
 text-transform: uppercase;
 border-top:1px solid #ddd;
