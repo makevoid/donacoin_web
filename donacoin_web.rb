@@ -103,6 +103,42 @@ class DonacoinWeb < Sinatra::Application
     content_type :json
     Pool.current.to_json
   end
+  
+
+  # DB
+  
+  
+  # append / incr only
+  CAUSES_VALUE = [
+    { name: "wikipedia", value: 123 }, # kh/s
+  ]
+  
+  MINERS_VALUE = [
+    { username: "virtuoid", value: 123, cause: "wikipedia" },
+  ]
+  
+  # hash
+  ACTIVE_MINED = [
+    { uid: "123asda", time: Time.now-10 },
+    { uid: "234asda", time: Time.now-1 }
+  ]
+  
+  post "/notify_mining" do
+    time_unit = 1 # every time_unit one miner calls /notify_mining
+    
+    uid = params[:uid]
+    params[:speed]
+    params[:cause]
+    params[:username]
+    
+    if last_mining(:udid) == time-1
+      assign_value uid, speed
+    else
+      start_mining uid
+    end
+    
+    Pool.current.to_json
+  end
 
 end
 
