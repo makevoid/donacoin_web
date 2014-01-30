@@ -5,13 +5,9 @@ require 'json'
 require 'bundler/setup'
 Bundler.require :default
 
-# todo: move in models / db
+# todo: move in models / db, use a real db for users
 
-CAUSES = [
-  { name: :wikipedia, label: "Wikipedia", desc: "Wikipedia is the free encyclopedia" },
-  { name: :riotvan, label: "RiotVan", desc: "RiotVan is a free press magazine based in Firenze, Italy" },
-  { name: :fsf, label: "Free Software Foundation", desc: "RiotVan is a free press magazine based in Firenze, Italy" },
-]
+CAUSES = eval File.read("db/causes.rb")
 
 DONORS = [
   { username: "makevoid" },
@@ -60,6 +56,10 @@ class DonacoinWeb < Sinatra::Application
   get "/causes" do
     @causes = Cause.all
     haml :causes
+  end
+
+  get "/causes/register" do
+    "soon!, meanwhile send a mail to makevoid@gmail.com"
   end
 
   get "/causes/:name" do |name|

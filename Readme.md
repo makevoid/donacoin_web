@@ -1,4 +1,4 @@
-# DonacoinWeb 
+# DonacoinWeb
 ### Web GUI for Donacoin project
 
 install:
@@ -12,26 +12,4 @@ run:
 
 ### List of projects/causes/chariries
 
-// post here when ready: http://www.reddit.com/r/Bitcoin/comments/1rlcc9/bitcoin_mining_for_charity/
-
-
-
-// charities list
-
-// fsf
-// freedombox
-// wwf
-// mozilla
-// wikileaks
-// wikipedia
-
-// amnesty international
-// wwf
-// greenpeace
-// unicef
-
-// creative commons
-// movember
-
-// salvation army
-// save the children
+<https://github.com/makevoid/donacoin_web/blob/master/db/causes.rb>

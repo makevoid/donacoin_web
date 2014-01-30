@@ -1,35 +1,55 @@
-.row-fluid
-  .separator15
+.row-fluid.special-bg
+  .separator30
   %h1.slogan
     Let your computer donate money for a Cause!
   %h2.centered-content.muted
     %i.fa.fa-bitcoin
-      e-coin mining based donation system
+    e-coin mining based donation system
   .separator15
   .centered-content
     %img{ src: "/img/screenshots/donacoin.png" }
-    %img{ src: "/img/screenshots/donacoin2.png" }
-  .separator30
+.separator30
 .hr
-.row-fluid
+.row-fluid.highlight
+  .span3.right-content.desktop
+    .separator10
+    %i.fa.fa-angle-right.fa-3x.muted
   .span7
-    = haml :_download
-    %h3 Top causes
-    .causes
-      - for cause in @causes
-        .cause
-          %a{ href: "/causes/#{cause[:name]}" }
-            = cause[:name]
-          %p= cause[:desc]
-      .clear
-  .span3.highlight
+    %p.muted
+      %small.row-fluid
+        You donate some of your CPU-time > 5-50 &euro; cent / day donated to the Cause you choose!
+      %small.row-fluid
+        Does it seems a small amount? Multiply it for 10, 100, 1000!
+      %small.row-fluid
+        %b
+          Donate togheter!
+  .separator15
+= haml :_download
+.hr
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1
+        Top causes
+      .hr
+      .causes
+        - for cause in @causes[0..4]
+          .cause
+            %h3
+              %a{ href: "/causes/#{cause[:name]}" }
+                = cause[:label]
+            = cause[:desc]
+            .separator5
+        .clear
+  .span3.page-right.blank
     .row-fluid
       .row-fluid
-        %h2.muted
-          %i
-            More about Donacoin
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
         .hr
         = haml :_infos_main
+        .separator15
 
 
 

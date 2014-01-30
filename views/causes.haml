@@ -1,13 +1,28 @@
-.row-fluid
-  %h1 Causes
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1 Causes
+      .hr
+      %section.causes
+        - @causes.each do |cause|
+          %h2
+            %a{ href: "/causes/#{cause[:name]}" }
+              = cause[:label]
+          %p= cause[:desc]
+          / TODO: %p= cause[:active_miners] || cause[:total_donations]
 
-  %p List of causes:
-
-  %section.causes
-    - @causes.each do |cause|
-      %h1
-        %a{ href: "/causes/#{cause[:name]}" }
-          = cause[:name]
-      %p= cause[:active_miners]
-
-
+      %p Do you have a cause / project you want to register? Are you a charity/onlus/ngo?
+      .hr
+      .separator15
+      %a.row-fluid.centered-content.btn.btn-medium.btn-primary{ href: "/causes/register" } 
+        %i.fa.fa-pencil
+        Register a Cause
+  .span3.page-right.blank
+    .row-fluid
+      .row-fluid
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
+        .hr
+        = haml :_infos_main
+        .separator15

@@ -2,6 +2,7 @@
 %html
   %head
     %title Donacoin - No-cost donations
+    %meta{ name: "viewport", content: "width=device-width" }
     %link{ href: "/css/main.css", rel: "stylesheet" }
     %link{ href: "/css/media-queries.css", rel: "stylesheet" }
     %link{ href: "/vendor/fontawesome/css/font-awesome.min.css", rel: "stylesheet" }
@@ -14,7 +15,7 @@
       .row-fluid
         .span2.logo
           %a{ href: "/" }
-            %img{ src:"/img/logo.png" }
+            %img{ src:"/img/donacoin_logo_complete.png" }
         .span8
           %ul
             %li
@@ -28,21 +29,21 @@
             %li
               %a{ href: "/guide"   } Guide
     .separator30
-    .separator30
+    .separator15
     .content
       = yield
     %footer
-      .span2.centered-content
-        Copyright © Donacoin #{Time.now.year}
-      .span8.centered-content
-        .span2
-          %a{ href: "/terms" } terms and conditions
-        .span1
-          %a{ href: "/privacy" } privacy
-        .span1
+      %ul.row-fluid
+        %li
+          Copyright © Donacoin #{Time.now.year} &nbsp;&nbsp;&nbsp;
+        %li
+          %a{ href: "/terms" } terms and conditions &nbsp;&nbsp;&nbsp;
+        %li
+          %a{ href: "/privacy" } privacy &nbsp;&nbsp;&nbsp;
+        %li
           %a{ href: "/contacts" } contacts
-        .span2.pull-right
-          %a.muted{ href:"http://bitcoin.org", target:"_blank" }
+        %li.pull-right
+          %a.desktop.muted{ href:"http://bitcoin.org", target:"_blank" }
             We
             %i.fa.fa-heart
             %i.fa.fa-bitcoin
