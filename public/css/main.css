@@ -163,10 +163,12 @@ background:#84ECFE;
 width:29%;
 margin:20px 0;
 color:#075668;
-box-shadow:0px 0px 1px 1px rgba(0,0,0,0.2) inset ;
+border-radius:2px;
 }.page-left{
-width:71%;
+width:70%;
 margin:20px 0;
+margin-right:1%;
+border-radius:2px;
 padding-bottom:15px;
 box-shadow:0px 0px 0px 1px #ddd inset;
 }
