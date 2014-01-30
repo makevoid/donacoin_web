@@ -29,20 +29,24 @@
 .page.row-fluid.highlight
   .span7.page-left.blank
     .row-fluid
-      %h3 Top causes
+      %h1
+        Top causes
+      .hr
       .causes
         - for cause in @causes[0..4]
           .cause
-            %a{ href: "/causes/#{cause[:name]}" }
-              = cause[:label]
-            %p= cause[:desc]
+            %h3
+              %a{ href: "/causes/#{cause[:name]}" }
+                = cause[:label]
+            = cause[:desc]
+            .separator5
         .clear
   .span3.page-right.blank
     .row-fluid
       .row-fluid
-        %h2.muted
-          %i
-            More about Donacoin
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
         .hr
         = haml :_infos_main
         .separator15

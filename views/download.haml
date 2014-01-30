@@ -1,4 +1,14 @@
-.row-fluid
-  %h1 Download
-
-  = haml :_download
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1 Download
+      = haml :_download
+  .span3.page-right.blank
+    .row-fluid
+      .row-fluid
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
+        .hr
+        = haml :_infos_main
+        .separator15
