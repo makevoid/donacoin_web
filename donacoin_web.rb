@@ -107,11 +107,20 @@ class DonacoinWeb < Sinatra::Application
 
   # DB
   
+  R = Redis.new
   
+  #cause_wikipedia_value 0
+  # INCR cause:wikipedia_value
+  # R.incr "cause:wikipedia_value"
+  #cause_wikipedia_value 1
+
   # append / incr only
   CAUSES_VALUE = [
     { name: "wikipedia", value: 123 }, # kh/s
   ]
+  
+  # R.keys
+  # R.incr "username:virtuoid_cause:wikipedia"
   
   MINERS_VALUE = [
     { username: "virtuoid", value: 123, cause: "wikipedia" },
