@@ -1,7 +1,7 @@
 /*Screen less than 800px */
 @media screen and (min-width:1px) and (max-width:850px) {
 .desktop{
-	display:none;
+display:none;
 }
 [class*="span"] {
 width:100%;
@@ -46,5 +46,13 @@ width: 100px;
 footer ul li{
 text-align:center;
 display: list-item;
+}
+.page{
+background: #fff;
+}
+.page-left{
+box-shadow:none;
+margin-top:10px;
+
 }
 }

@@ -1,11 +1,30 @@
-.row-fluid
-  %h1 Donors
-
-  %p Donacoin and all the partecipating causes and projects thank all the donors for the amount donated. Here's a chart of our best donators:
-
-  %h1 Top Donors
-
-  %ul
-    - for donor in @donors
-      %li
-        %a{ href: "/donors/#{donor[:username]}" }= donor[:username]
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1 Donors
+      .hr
+      %p
+      
+      Donacoin and all the partecipating causes and projects thank all the donors for the amount donated. 
+      %h4.highlight.radius5
+        .row-fluid.highlight
+          .separator5 
+          %i.fa.fa-angle-down  
+          Here's a chart of our best donators
+          .separator5 
+      .separator15
+      %h1 Top Donors
+      .hr
+      %ul
+        - for donor in @donors
+          %li
+            %a{ href: "/donors/#{donor[:username]}" }= donor[:username]
+  .span3.page-right.blank
+    .row-fluid
+      .row-fluid
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
+        .hr
+        = haml :_infos_main
+        .separator15
