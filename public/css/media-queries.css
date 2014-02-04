@@ -20,11 +20,9 @@ background: rgba(255,255,255,0.9);
 display: none;
 box-shadow: 0px 2px 2px -1px rgba(0,0,0,0.2),0px 3px 10px 0px #fff inset;
 }nav ul li{
-display: list-item;
 float: none;
 margin:10px 0;
 text-align: center;
-
 }nav ul li a{
 font-size: 20px;
 line-height: 35px;
@@ -35,7 +33,8 @@ width: 150px ;
 border-bottom:1px solid rgba(0,0,0,0.09);
 box-shadow: 0px 1px 1px -1px #eee;
 display: block;
-
+}nav ul li a:hover, nav ul li a.active{
+color:#FF2A2A;
 }
 .nav-btn{
 display: inherit;
