@@ -1,3 +1,27 @@
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1 
+        #{@donor[:username]}
+        %small.muted
+          Donator
+      .hr
+
+      %p Do you have a cause / project you want to register? Are you a charity/onlus/ngo?
+      .hr
+      .separator15
+      %a.row-fluid.centered-content.btn.btn-medium.btn-primary{ href: "/causes/register" } 
+        %i.fa.fa-pencil
+        Register a Cause
+  .span3.page-right.blank
+    .row-fluid
+      .row-fluid
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
+        .hr
+        = haml :_infos_main
+        .separator15
 .row-fluid
   %h1 Donor: #{@donor[:username]}
 
