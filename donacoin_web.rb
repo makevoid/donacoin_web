@@ -42,6 +42,46 @@ class Donor
   end
 end
 
+# DB - TODO: move in appropriate location / storage
+
+#R = Redis.new
+
+#cause_wikipedia_value 0
+# INCR cause:wikipedia_value
+# R.incr "cause:wikipedia_value"
+#cause_wikipedia_value 1
+
+# append / incr only
+CAUSES_VALUE = [
+  { name: "wikipedia", value: 123 }, # kh/s
+]
+
+# R.keys
+# R.incr "username:virtuoid_cause:wikipedia"
+
+DONORS_VALUE = [
+  { uid: "123asda", username: "virtuoid", cause: "wikipedia" },
+  { uid: "345asda", username: "makevoid", cause: "riotvan" },
+]
+
+MINERS_VALUE = [
+  { uid: "123asda", value: 123 },
+  { uid: "345asda", value: 001 },
+] # separated from donors_value because of Redis incr functionality: es: R["miners_value:123asdasd"].incr 10
+
+# computed not saved (practically a join of the two above)
+VALUES = [
+  { uid: "123asda", username: "virtuoid", cause: "wikipedia", value: 123 },
+  { uid: "345asda", username: "virtuoid", cause: "riotvan", value: 001 },
+]
+
+# hash
+ACTIVE_MINED = [
+  { uid: "123asda", time: Time.now-10 },
+  { uid: "234asda", time: Time.now-1 }
+]
+
+
 class DonacoinWeb < Sinatra::Application
 
   get "/" do
@@ -64,6 +104,7 @@ class DonacoinWeb < Sinatra::Application
 
   get "/causes/:name" do |name|
     @cause = Cause.all.find{ |c| c[:name].to_s == name  }
+    @values = VALUES.select{ |v| v[:cause].to_s == name }
     haml :cause
   end
 
@@ -105,71 +146,41 @@ class DonacoinWeb < Sinatra::Application
   end
 
 
-  # DB
 
-  #R = Redis.new
 
-  #cause_wikipedia_value 0
-  # INCR cause:wikipedia_value
-  # R.incr "cause:wikipedia_value"
-  #cause_wikipedia_value 1
-
-  # append / incr only
-  CAUSES_VALUE = [
-    { name: "wikipedia", value: 123 }, # kh/s
-  ]
-
-  # R.keys
-  # R.incr "username:virtuoid_cause:wikipedia"
-  
-  DONORS_VALUE = [
-    { uid: "123asda", username: "virtuoid", cause: "wikipedia" }, 
-  ]
-
-  MINERS_VALUE = [
-    { uid: "123asda", value: 123 },
-  ]
-
-  # hash
-  ACTIVE_MINED = [
-    { uid: "123asda", time: Time.now-10 },
-    { uid: "234asda", time: Time.now-1 }
-  ]
-
-  
   # TODO: move and refactor away
-  
+
   def last_mining_time(uid)
     # TODO: call: check_active uid
-    
+
     # updating (valid)
     Time.now - 4
     # not updating (invalid)
     # Time.now - 6
   end
-  
+
   def check_active(uid)
     # TODO: implement
   end
-  
+
   def assign_value(uid, speed)
     miner = MINERS_VALUE.find{ |min| min[:uid] == uid }
     miner[:value] += speed
   end
-  
+
   def update_active_miners(uid)
     ACTIVE_MINED << { uid: uid, time: Time.now }
   end
-  
+
   def start_mining(uid)
-    #update_active_miners uid       
+    #update_active_miners uid
     ACTIVE_MINED << { uid: uid, time: Time.now }
   end
-  
+
   post "/notify_mining" do
     time_unit = 1 # minutes: every time_unit one miner calls /notify_mining
     time_unit = 5 # seconds (dev): ui in dev mode calls notify every 5 secs
-    
+
     uid = params[:uid] || "123asda" # FIXME: change in prod
     speed = params[:speed].to_i
     cause = params[:cause]
