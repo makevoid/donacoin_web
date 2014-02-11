@@ -69,11 +69,20 @@ MINERS_VALUE = [
   { uid: "345asda", value: 001 },
 ] # separated from donors_value because of Redis incr functionality: es: R["miners_value:123asdasd"].incr 10
 
-# computed not saved (practically a join of the two above)
-VALUES = [
-  { uid: "123asda", username: "virtuoid", cause: "wikipedia", value: 123 },
-  { uid: "345asda", username: "virtuoid", cause: "riotvan", value: 001 },
-]
+
+class Value
+
+  def self.all
+    values = []
+    DONORS_VALUE.each do |donor|
+      miner_value = MINERS_VALUE.find{ |mv| mv[:uid] == donor[:uid] }
+      value = donor.merge( value: miner_value[:value] )
+      values << value
+    end
+    values
+  end
+
+end
 
 # hash
 ACTIVE_MINED = [
@@ -104,7 +113,7 @@ class DonacoinWeb < Sinatra::Application
 
   get "/causes/:name" do |name|
     @cause = Cause.all.find{ |c| c[:name].to_s == name  }
-    @values = VALUES.select{ |v| v[:cause].to_s == name }
+    @values = Value.all.select{ |v| v[:cause].to_s == name }
     haml :cause
   end
 
