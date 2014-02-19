@@ -1,9 +1,5 @@
-path = File.expand_path ",,/", __FILE__
-
-require 'json'
-
-require 'bundler/setup'
-Bundler.require :default
+path = File.expand_path "../", __FILE__
+require "#{path}/config/env"
 
 # todo: move in models / db, use a real db for users
 
@@ -115,8 +111,38 @@ class DonacoinWeb < Sinatra::Application
   #cause_wikipedia_value 1
 
   # append / incr only
+  
+  # reset redis db
+  R.flushdb
+  
+  R.set "causes_count", 0 unless R.get "causes_count"
+  
+  def cause_create(name)
+    count = R.incr "causes_count"
+    R.hset "causes:#{count}", "name", name
+    R.hset "causes:#{count}", "value", 0
+    count
+  end
+  
+  def cause_value_incr(cause_id, val)
+    R.hincrby "causes:#{cause_id}", "value", val
+  end
+  
+  def cause_value_get(cause_id)
+    R.hget "causes:#{cause_id}", "value"
+  end  
+  
+  count = R.incr "causes_count"
+  R.hset "causes:#{count}", "name", "wikipedia"
+  R.hset "causes:#{count}", "value", "123"
+  
+  count = R.incr "causes_count"
+  R.hset "causes:#{count}", "name", "riotvan"
+  R.hset "causes:#{count}", "value", "22"
+  
   CAUSES_VALUE = [
     { name: "wikipedia", value: 123 }, # kh/s
+    { name: "riotvan", value: 22 }, # kh/s
   ]
 
   # R.keys
