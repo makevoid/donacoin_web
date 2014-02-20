@@ -1,9 +1,5 @@
-path = File.expand_path ",,/", __FILE__
-
-require 'json'
-
-require 'bundler/setup'
-Bundler.require :default
+path = File.expand_path "../", __FILE__
+require "#{path}/config/env"
 
 # todo: move in models / db, use a real db for users
 
@@ -42,56 +38,7 @@ class Donor
   end
 end
 
-# DB - TODO: move in appropriate location / storage
-
-#R = Redis.new
-
-#cause_wikipedia_value 0
-# INCR cause:wikipedia_value
-# R.incr "cause:wikipedia_value"
-#cause_wikipedia_value 1
-
-# append / incr only
-CAUSES_VALUE = [
-  { name: "wikipedia", value: 123 }, # kh/s
-]
-
-# R.keys
-# R.incr "username:virtuoid_cause:wikipedia"
-
-DONORS_VALUE = [
-  { uid: "123asda", username: "virtuoid", cause: "wikipedia" },
-  { uid: "345asda", username: "makevoid", cause: "riotvan" },
-]
-
-MINERS_VALUE = [
-  { uid: "123asda", value: 123 },
-  { uid: "345asda", value: 001 },
-] # separated from donors_value because of Redis incr functionality: es: R["miners_value:123asdasd"].incr 10
-
-
-class Value
-
-  def self.all
-    values = []
-    DONORS_VALUE.each do |donor|
-      miner_value = MINERS_VALUE.find{ |mv| mv[:uid] == donor[:uid] }
-      value = donor.merge( value: miner_value[:value] )
-      values << value
-    end
-    values
-  end
-
-end
-
-# hash
-ACTIVE_MINED = [
-  { uid: "123asda", time: Time.now-10 },
-  { uid: "234asda", time: Time.now-1 }
-]
-
-
-class DonacoinWeb < Sinatra::Application
+class DonacoinWeb < Sinatra::Base
 
   get "/" do
     @causes = Cause.all
@@ -154,6 +101,73 @@ class DonacoinWeb < Sinatra::Application
     Pool.current.to_json
   end
 
+
+  # DB
+
+  #R = Redis.new
+
+  #cause_wikipedia_value 0
+  # INCR cause:wikipedia_value
+  # R.incr "cause:wikipedia_value"
+  #cause_wikipedia_value 1
+
+  # append / incr only
+
+  # reset redis db
+  R.flushdb
+
+  R.set "causes_count", 0 unless R.get "causes_count"
+
+  def cause_create(name)
+    count = R.incr "causes_count"
+    R.hset "causes:#{count}", "name", name
+    R.hset "causes:#{count}", "value", 0
+    count
+  end
+
+  def cause_value_incr(cause_id, val)
+    R.hincrby "causes:#{cause_id}", "value", val
+  end
+
+  def cause_value_get(cause_id)
+    R.hget "causes:#{cause_id}", "value"
+  end
+
+
+  CAUSES_VALUE = [
+    { name: "wikipedia", value: 123 }, # kh/s
+    { name: "riotvan", value: 22 }, # kh/s
+  ]
+
+  DONORS_VALUE = [
+    { uid: "123asda", username: "virtuoid", cause: "wikipedia" },
+    { uid: "345asda", username: "makevoid", cause: "riotvan" },
+  ]
+
+  MINERS_VALUE = [
+    { uid: "123asda", value: 123 },
+    { uid: "345asda", value: 001 },
+  ] # separated from donors_value because of Redis incr functionality: es: R["min
+
+
+  class Value
+
+    def self.all
+      values = []
+      DONORS_VALUE.each do |donor|
+        miner_value = MINERS_VALUE.find{ |mv| mv[:uid] == donor[:uid] }
+        value = donor.merge( value: miner_value[:value] )
+        values << value
+      end
+      values
+    end
+
+  end
+
+  ACTIVE_MINED = [
+    { uid: "123asda", time: Time.now-10 },
+    { uid: "234asda", time: Time.now-1 }
+  ]
 
 
 
