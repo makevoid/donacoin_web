@@ -60,7 +60,6 @@ class DonacoinWeb < Sinatra::Base
 
   get "/causes/:name" do |name|
     @cause = Cause.all.find{ |c| c[:name].to_s == name  }
-    @values = Value.all.select{ |v| v[:cause].to_s == name }
     haml :cause
   end
 
@@ -102,6 +101,7 @@ class DonacoinWeb < Sinatra::Base
   end
 
 
+<<<<<<< HEAD
   # DB
 
   #R = Redis.new
@@ -171,6 +171,8 @@ class DonacoinWeb < Sinatra::Base
 
 
 
+=======
+>>>>>>> 0f49ac3bf8511917d018612fa1e23bd57df731bc
   # TODO: move and refactor away
 
   def last_mining_time(uid)
