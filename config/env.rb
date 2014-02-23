@@ -15,15 +15,15 @@ require "#{path}/lib/notification"
 
 
 # final
-R = Redis.new
+#R = Redis.new
 
-# dev - nitrous
+# dev - nitrous / prod - until redis is not installed
 
-# R = Redis.new(
-#   host: "pub-redis-14143.us-east-1-4.2.ec2.garantiadata.com",
-#   port: 14143,
-#   #password: ""
-# )
+R = Redis.new(
+  host: "pub-redis-14143.us-east-1-4.2.ec2.rantiadata.com",
+  port: 14143,
+  #password: ""
+)
 
 
 
