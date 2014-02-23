@@ -8,21 +8,22 @@ Bundler.require :default
 
 require "#{path}/lib/db"
 require "#{path}/lib/models"
+require "#{path}/lib/notification"
 
 
 ##################
 
 
 # final
-# R = Redis.new
+R = Redis.new
 
 # dev - nitrous
 
-R = Redis.new(
-  host: "pub-redis-14143.us-east-1-4.2.ec2.garantiadata.com",
-  port: 14143,
-  #password: ""
-)
+# R = Redis.new(
+#   host: "pub-redis-14143.us-east-1-4.2.ec2.garantiadata.com",
+#   port: 14143,
+#   #password: ""
+# )
 
 
 
@@ -30,34 +31,56 @@ R = Redis.new(
 ###### to move in redis lib
 
 
+class Redis
 
-# reset redis db
-R.flushdb
+  class Cause
+    def create
+      count = R.incr "causes_count"
+      R.hset "causes:#{count}", "value", 0
+      count
+    end
 
-R.set "causes_count", 0 unless R.get "causes_count"
+    def value_incr(cause_id, val)
+      R.hincrby "causes:#{cause_id}", "value", val
+    end
 
-def cause_create
-  count = R.incr "causes_count"
-  R.hset "causes:#{count}", "value", 0
-  count
-end
+    def value_get(cause_id)
+      R.hget "causes:#{cause_id}", "value"
+    end
+  end
 
-def cause_value_incr(cause_id, val)
-  R.hincrby "causes:#{cause_id}", "value", val
-end
+  def cause
+    Cause.new
+  end
 
-def cause_value_get(cause_id)
-  R.hget "causes:#{cause_id}", "value"
 end
 
 ####
 
-# puts Cause.all
+class Cause
+  def self.create(cause_hash)
+    id = R.cause.create
+    Causes.instance << { id: id }.merge(cause_hash)
+  end
+end
 
-# id = cause_create
-# Cause << { name: "Wikipedia", desc: "The free encyclopedia", id: id }
+
+# REDIS work here
+
+# reset redis db
+R.flushdb; puts "flushing the redis db"
 
 
+R.set "causes_count", 0 unless R.get "causes_count"
+
+
+
+
+#puts Causes.instance.all.inspect
+
+#Cause.create( name: "Wikipedia", desc: "The free encyclopedia" )
+
+#Causes.instance.write
 
 
 ####

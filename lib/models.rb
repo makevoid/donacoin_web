@@ -1,10 +1,4 @@
 
-
-CAUSES_VALUE = [
-  { name: "wikipedia", value: 123 }, # kh/s
-  { name: "riotvan", value: 22 }, # kh/s
-]
-
 DONORS_VALUE = [
   { uid: "123asda", username: "virtuoid", cause: "wikipedia" },
   { uid: "345asda", username: "makevoid", cause: "riotvan" },
@@ -28,10 +22,21 @@ class Value
     values
   end
 
+
+  require "net/http"
+  def self.calculate(speed, curr)
+    url = URI("http://www.cryptocoincharts.info/v2/api/listCoins")
+    resp = Net::HTTP.get url
+    resp = JSON.parse(resp)
+
+    entry = resp.find{ |r| r["id"] == curr }
+    entry["price_btc"] * speed
+  end
+
 end
 
 ACTIVE_MINED = [
   { uid: "123asda", time: Time.now-10 },
   { uid: "234asda", time: Time.now-1 }
-]
+]# periodically flush
 

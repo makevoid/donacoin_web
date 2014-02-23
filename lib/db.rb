@@ -1,38 +1,55 @@
 class DB
-  
-  def self.init_db(name)
-    @@db_name = name
-    read
-  end
-  
-  def self.read
-    @@collection = begin
-      JSON.parse File.read("#{PATH}/db/#{@@db_name}.json")  
+
+  attr_accessor :collection
+
+  def read
+    @collection = begin
+      JSON.parse File.read("#{PATH}/db/#{@db_name}.json")
     rescue Errno::ENOENT # file doesn't exists
       []
     end
   end
-  
-  def self.all
-    @@collection
+
+  def all
+    @collection
   end
-    
-  def self.write
-    File.open("#{PATH}/db/#{@@db_name}.json", "w") do |file|
-      file.write @@collection.to_json
+
+  def write
+    File.open("#{PATH}/db/#{@db_name}.json", "w") do |file|
+      file.write @collection.to_json
     end
+    true
   end
-  
-  def self.<<(entry)
-    @@collection << entry
+
+  def <<(entry)
+    @collection << entry
   end
-  
+
 end
 
+
 class Causes < DB
-  init_db "causes"  
+
+  def self.instance
+    @@instance ||= new
+  end
+
+  def initialize
+    @db_name = "causes"
+    read
+  end
+
 end
 
 class Donors < DB
-  init_db "donors"
+
+  def self.instance
+    @@instance ||= new
+  end
+
+  def initialize
+    @db_name = "donors"
+    read
+  end
+
 end

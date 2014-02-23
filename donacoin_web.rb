@@ -56,10 +56,19 @@ class DonacoinWeb < Sinatra::Base
 
   get "/causes/register" do
     "soon!, meanwhile send a mail to makevoid@gmail.com"
+
+    # shows a form to post /causes
+  end
+
+  post "/causes" do
+    # Cause.create( name: "Wikipedia", desc: "The free encyclopedia" )
+
+    # shows a page with successfully created cause & share to start getting cashhhhh
   end
 
   get "/causes/:name" do |name|
     @cause = Cause.all.find{ |c| c[:name].to_s == name  }
+    @values = Value.all.select{ |v| v[:cause].to_s == name }
     haml :cause
   end
 
@@ -100,52 +109,13 @@ class DonacoinWeb < Sinatra::Base
     Pool.current.to_json
   end
 
-
-  # TODO: move and refactor away
-
-  def last_mining_time(uid)
-    # TODO: call: check_active uid
-
-    # updating (valid)
-    Time.now - 4
-    # not updating (invalid)
-    # Time.now - 6
-  end
-
-  def check_active(uid)
-    # TODO: implement
-  end
-
-  def assign_value(uid, speed)
-    miner = MINERS_VALUE.find{ |min| min[:uid] == uid }
-    miner[:value] += speed
-  end
-
-  def update_active_miners(uid)
-    ACTIVE_MINED << { uid: uid, time: Time.now }
-  end
-
-  def start_mining(uid)
-    #update_active_miners uid
-    ACTIVE_MINED << { uid: uid, time: Time.now }
-  end
-
   post "/notify_mining" do
-    time_unit = 1 # minutes: every time_unit one miner calls /notify_mining
-    time_unit = 5 # seconds (dev): ui in dev mode calls notify every 5 secs
+    uid       = params[:uid] || "123asda" # FIXME: change in prod
+    speed     = params[:speed].to_i
+    cause     = params[:cause]
+    username  = params[:username]
 
-    uid = params[:uid] || "123asda" # FIXME: change in prod
-    speed = params[:speed].to_i
-    cause = params[:cause]
-    username = params[:username]
-
-    if last_mining_time(:uid) > (Time.now - time_unit)
-      assign_value uid, speed
-    else
-      start_mining uid
-    end
-
-    puts MINERS_VALUE
+    Notification.new.receive uid, speed
     Pool.current.to_json
   end
 

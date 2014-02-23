@@ -5,19 +5,11 @@
 
   %p #{@cause[:desc]}
 
-  %p Wikipedia
-
   %section
     %h1 Top Donors
-
-    %ul
-      - for donor in Donor.all
-        %li
-          %a{ href: "/donors/#{donor[:username]}" }= donor[:username]
-
 
     %ul
       - for value in @values
         %li
           %a{ href: "/donors/#{value[:username]}" }= value[:username]
-          donated: #{value[:value]}
+          (#{value[:value]} &euro;/c donated)
