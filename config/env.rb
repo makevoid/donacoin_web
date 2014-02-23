@@ -14,16 +14,16 @@ require "#{path}/lib/notification"
 ##################
 
 
-# final
-#R = Redis.new
+# final & dev
+# R = Redis.new
 
-# dev - nitrous / prod - until redis is not installed
+# dev - nitrous
 
-R = Redis.new(
-  host: "pub-redis-14143.us-east-1-4.2.ec2.rantiadata.com",
-  port: 14143,
-  #password: ""
-)
+# R = Redis.new(
+#   host: "pub-redis-14143.us-east-1-4.2.ec2.garantiadata.com",
+#   port: 14143,
+#   #password: ""
+# )
 
 
 
@@ -67,29 +67,15 @@ end
 
 # REDIS work here
 
-# reset redis db
-R.flushdb; puts "flushing the redis db"
+## reset redis db
+# R.flushdb; puts "flushing the redis db"
 
-
-R.set "causes_count", 0 unless R.get "causes_count"
-
-
+## set causes count to 0
+# R.set "causes_count", 0 unless R.get "causes_count"
 
 
 #puts Causes.instance.all.inspect
-
 #Cause.create( name: "Wikipedia", desc: "The free encyclopedia" )
-
 #Causes.instance.write
 
-
-####
-
-# count = R.incr "causes_count"
-# R.hset "causes:#{count}", "name", "wikipedia"
-# R.hset "causes:#{count}", "value", "123"
-
-# count = R.incr "causes_count"
-# R.hset "causes:#{count}", "name", "riotvan"
-# R.hset "causes:#{count}", "value", "22"
 
