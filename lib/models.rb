@@ -1,42 +1,40 @@
-
 DONORS_VALUE = [
   { uid: "123asda", username: "virtuoid", cause: "wikipedia" },
   { uid: "345asda", username: "makevoid", cause: "riotvan" },
+  { uid: "987asda", username: "filipporetti", cause: "mozilla" },
+  { uid: "879asda", username: "wouldgo", cause: "riotvan" },
 ]
 
 MINERS_VALUE = [
   { uid: "123asda", value: 123 },
   { uid: "345asda", value: 001 },
+  { uid: "987asda", value: 001 },
+  { uid: "879asda", value: 001 },
 ] # separated from donors_value because of Redis incr functionality: es: R["min
 
-
-class Value
-
-  def self.all
-    values = []
-    DONORS_VALUE.each do |donor|
-      miner_value = MINERS_VALUE.find{ |mv| mv[:uid] == donor[:uid] }
-      value = donor.merge( value: miner_value[:value] )
-      values << value
-    end
-    values
-  end
+# todo: move in models / db, use a real db for users
 
 
-  require "net/http"
-  def self.calculate(speed, curr)
-    url = URI("http://www.cryptocoincharts.info/v2/api/listCoins")
-    resp = Net::HTTP.get url
-    resp = JSON.parse(resp)
+require "#{PATH}/lib/pool"
+require "#{PATH}/lib/cause"
+require "#{PATH}/lib/donor"
+require "#{PATH}/lib/value"
 
-    entry = resp.find{ |r| r["id"] == curr }
-    entry["price_btc"] * speed
-  end
-
-end
 
 ACTIVE_MINED = [
   { uid: "123asda", time: Time.now-10 },
   { uid: "234asda", time: Time.now-1 }
 ]# periodically flush
 
+
+# initialize db with saved causes
+
+
+causes = eval File.read("db/causes.rb")
+for cause in causes
+  unless Cause.all.map{ |c| c[:name] }.include? cause[:name].to_s
+    Cause.create cause
+  end
+end
+
+Causes.instance.write

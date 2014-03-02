@@ -1,43 +1,6 @@
 path = File.expand_path "../", __FILE__
 require "#{path}/config/env"
 
-# todo: move in models / db, use a real db for users
-
-CAUSES = eval File.read("db/causes.rb")
-
-DONORS = [
-  { username: "makevoid" },
-  { username: "filipporetti" },
-  { username: "Virtuoid" },
-  { username: "wouldgo" },
-]
-
-class Pool
-  def self.current
-    {
-      pool: "stratum+tcp://dgc.hash.so:3341",
-      worker_user: "donacoin.1",
-      worker_pass: "1",
-    } # virtuo's account
-  end
-end
-
-class Cause
-  def self.all
-    CAUSES
-  end
-end
-
-class Donor
-  def self.all
-    DONORS
-  end
-
-  def self.top
-    DONORS
-  end
-end
-
 class DonacoinWeb < Sinatra::Base
 
   get "/" do
@@ -100,6 +63,11 @@ class DonacoinWeb < Sinatra::Base
 
   get "/contacts" do
     haml :contacts
+  end
+
+  get "/stats" do
+    content_type :json
+    { active_mined: ACTIVE_MINED, total_mined: 123, value_last_24h: 12 } .to_json
   end
 
   # api

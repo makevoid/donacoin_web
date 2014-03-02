@@ -4,7 +4,15 @@ class DB
 
   def read
     @collection = begin
-      JSON.parse File.read("#{PATH}/db/#{@db_name}.json")
+      entries = JSON.parse File.read("#{PATH}/db/#{@db_name}.json")
+      # TODO: refactor method outside (named: hash keys to symbols)
+      entries.map do |entry|
+        hash = {}
+        entry.each do |key, value|
+          hash[key.to_sym] = value
+        end
+        hash
+      end
     rescue Errno::ENOENT # file doesn't exists
       []
     end

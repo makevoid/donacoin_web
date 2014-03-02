@@ -1,18 +1,25 @@
 .page.row-fluid.highlight
   .span7.page-left.blank
     .row-fluid
-      %h1 
+      %h1
         #{@donor[:username]}
         %small.muted
           Donator
       .hr
 
-      %p Do you have a cause / project you want to register? Are you a charity/onlus/ngo?
-      .hr
-      .separator15
-      %a.row-fluid.centered-content.btn.btn-medium.btn-primary{ href: "/causes/register" } 
-        %i.fa.fa-pencil
-        Register a Cause
+      %p
+        Rank:
+        %span.rank 1st
+        %span on #{Donor.all.count} total donors
+      %p Total donations: #{@donor[:value_total] || 0} Euro
+      // %p First donation on: Jan 26, 2014
+
+      %h2 Causes donated to:
+
+      %p Wikipedia: 123
+      %p Wikileaks: 455
+
+
   .span3.page-right.blank
     .row-fluid
       .row-fluid
@@ -22,12 +29,12 @@
         .hr
         = haml :_infos_main
         .separator15
-.row-fluid
-  %h1 Donor: #{@donor[:username]}
 
-  %p
-    Rank:
-    %span.rank 1st
-    %span on 4 total donors
-  %p Total donations: 1 Euro
-  %p First donation on: Jan 26, 2014
+
+.row-fluid
+  %p Do you have a cause / project you want to register? Are you a charity/onlus/ngo?
+  .hr
+  .separator15
+  %a.row-fluid.centered-content.btn.btn-medium.btn-primary{ href: "/causes/register" }
+    %i.fa.fa-pencil
+    Register a Cause
