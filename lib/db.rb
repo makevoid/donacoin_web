@@ -61,3 +61,16 @@ class Donors < DB
   end
 
 end
+
+class DonorsCauses < DB
+
+  def self.instance
+    @@instance ||= new
+  end
+
+  def initialize
+    @db_name = "donors_causes"
+    read
+  end
+
+end
