@@ -77,8 +77,8 @@ class DonacoinWeb < Sinatra::Base
     Pool.current.to_json
   end
 
-  post "/notify_mining" do
-    uid       = params[:uid] || "123asda" # FIXME: change in prod
+  post "/notify_mining" do    
+    uid       = params[:uid] || "123asda"
     speed     = params[:speed].to_i
     cause     = params[:cause]
     username  = params[:username]

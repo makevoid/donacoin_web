@@ -53,7 +53,9 @@ end
 Donors.instance.write
 
 
-donor = Donor.all.first
-cause = Cause.all.first
-DonorsCause.create( donor_id: donor[:id], cause_id: cause[:id], value: 123 )
-DonorsCauses.instance.write
+#donor = Donor.all.first
+#cause = Cause.all.first
+#DonorsCause.create( donor_id: donor[:id], cause_id: cause[:id], value: 123 )
+
+
+#DonorsCauses.instance.write

@@ -9,7 +9,13 @@ Bundler.require :default
 require "#{path}/lib/db"
 require "#{path}/lib/notification"
 
-R = Redis.new
+#R = Redis.new
+R = Redis.new(
+  host: "pool.mkvd.net",
+  #port: 14143,
+  #password: ""
+)
+
 # init redis db defaults - set causes count to 0
 R.set "causes_count", 0 unless R.get "causes_count"
 
