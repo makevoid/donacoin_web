@@ -31,7 +31,7 @@ class DonacoinWeb < Sinatra::Base
 
   get "/causes/:name" do |name|
     @cause = Cause.all.find{ |c| c[:name].to_s == name  }
-    @values = Value.all.select{ |v| v[:cause].to_s == name }
+    @values = []#Value.all.select{ |v| v[:cause].to_s == name }
     haml :cause
   end
 
@@ -45,7 +45,15 @@ class DonacoinWeb < Sinatra::Base
   end
 
   get "/donors/:name" do |name|
-    @donor = Donor.all.find{ |c| c[:username].to_s == name  }
+    @donor = Donor.all.find{ |d| d[:username].to_s == name  } 
+    @donors_cause = DonorsCause.all.select{ |dc| dc[:donor_id] == @donor[:id] }
+    @causes = []
+    for donor_cause in @donors_cause 
+      cause = Cause.all.find{ |c| c[:id] == donor_cause[:cause_id] }
+      cause.merge!( :value => donor_cause[:value] )
+      @causes << cause            
+    end
+    
     haml :donor
   end
 

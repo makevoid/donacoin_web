@@ -16,8 +16,8 @@
 
       %h2 Causes donated to:
 
-      %p Wikipedia: 123
-      %p Wikileaks: 455
+      - for cause in @causes
+        %p #{cause[:label]}: #{cause[:value]}      
 
 
   .span3.page-right.blank

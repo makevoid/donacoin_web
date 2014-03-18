@@ -3,8 +3,10 @@ require "#{path}/config/env"
 require 'json'
 require 'net/http'
 
-
-host     = "mkvd-32284.euw1.nitrousbox.com:3000"
+#personal
+host     = "localhost:3000"
+#nitrous
+#host     = "mkvd-32284.euw1.nitrousbox.com:3000"
 
 username = "virtuoid"
 cause    = "wikipedia"

@@ -5,8 +5,10 @@ class Notification
 
   def receive (uid, speed)
     if last_mining_time(uid) > (Time.now - TIME_UNIT)
+      puts "assign"
       assign_value uid, speed
     else
+      puts "start"
       start_mining uid
     end
 
@@ -29,9 +31,11 @@ class Notification
   end
 
   def assign_value(uid, speed)
-    miner = MINERS_VALUE.find{ |min| min[:uid] == uid }
-    miner[:value] += speed
-    #R.incr
+    # miner = MINERS_VALUE.find{ |min| min[:uid] == uid }
+    # miner[:value] += speed
+    # R.incr
+    Redis::Donor.new.value_incr(uid,speed) 
+    puts Redis::Donor.new.value_get(uid)   
   end
 
   def update_active_miners(uid)

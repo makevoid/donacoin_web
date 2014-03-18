@@ -16,7 +16,6 @@ MINERS_VALUE = [
 
 # todo: move in models / db, use a real db for users
 
-
 require "#{PATH}/lib/pool"
 require "#{PATH}/lib/cause"
 require "#{PATH}/lib/donor"
@@ -33,7 +32,7 @@ ACTIVE_MINED = [
 # initialize db with saved causes
 
 
-causes = eval File.read("db/causes.rb")
+causes = eval File.read("#{PATH}/db/causes.rb")
 for cause in causes
   unless Cause.all.map{ |c| c[:name] }.include? cause[:name].to_s
     Cause.create cause
