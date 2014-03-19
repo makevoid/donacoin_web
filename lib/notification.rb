@@ -3,21 +3,20 @@ class Notification
   #TIME_UNIT = 1 # minutes: every time_unit one miner calls /notify_mining
   TIME_UNIT = 5 # seconds (dev): ui in dev mode calls notify every 5 secs
 
-  def receive (uid, speed)
-    if last_mining_time(uid) > (Time.now - TIME_UNIT)
+  def receive(donor_id, cause_id, speed)
+    if last_mining_time(donor_id) > (Time.now - TIME_UNIT)
       puts "assign"
-      assign_value uid, speed
+      assign_value donor_id, cause_id, speed
     else
       puts "start"
-      start_mining uid
+      start_mining donor_id
     end
-
-    puts MINERS_VALUE
+    
   end
 
   # TODO: refactor
 
-  def last_mining_time(uid)
+  def last_mining_time(donor_id)
     # TODO: call: check_active uid
 
     # updating (valid)
@@ -26,25 +25,23 @@ class Notification
     # Time.now - 6
   end
 
-  def check_active(uid)
+  def check_active(donor_id)
     # TODO: implement
   end
 
-  def assign_value(uid, speed)
-    # miner = MINERS_VALUE.find{ |min| min[:uid] == uid }
-    # miner[:value] += speed
-    # R.incr
-    Redis::Donor.new.value_incr(uid,speed) 
-    puts Redis::Donor.new.value_get(uid)   
+  def assign_value(donor_id, cause_id, speed)
+    Redis::Donor.new.value_incr donor_id, speed
+    Redis::Cause.new.value_incr cause_id, speed
+    DonorsCause.update  donor_id: donor_id, cause_id: cause_id, speed: speed
   end
 
-  def update_active_miners(uid)
-    ACTIVE_MINED << { uid: uid, time: Time.now }
+  def update_active_miners(donor_id)
+    ACTIVE_MINED << { uid: donor_id, time: Time.now }
   end
 
   def start_mining(uid)
     #update_active_miners uid
-    ACTIVE_MINED << { uid: uid, time: Time.now }
+    ACTIVE_MINED << { uid: donor_id, time: Time.now }
   end
 
-end
+end 

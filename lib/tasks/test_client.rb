@@ -8,9 +8,9 @@ host     = "localhost:3000"
 #nitrous
 #host     = "mkvd-32284.euw1.nitrousbox.com:3000"
 
-username = "virtuoid"
-cause    = "wikipedia"
-uid      = "123asda"
+
+cause_id = "1"
+donor = "virtuoid"
 
 URL         = "/miner"
 NOTIFY_URL  = "/notify_mining"
@@ -19,11 +19,9 @@ uri         = URI.parse "http://#{host}#{NOTIFY_URL}"
 
 params = { 
   speed:    12, 
-  username: username, 
-  cause:    cause,  
-  uid:      uid,
+  donor:    donor, 
+  cause_id: cause_id,  
 }
-
 
 while true
   response = Net::HTTP.post_form uri, params

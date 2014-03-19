@@ -2,7 +2,9 @@ path = File.expand_path "../", __FILE__
 require "#{path}/config/env"
 
 class DonacoinWeb < Sinatra::Base
-
+  
+  set :dump_errors, true
+  
   get "/" do
     @causes = Cause.all
     haml :index
@@ -46,11 +48,19 @@ class DonacoinWeb < Sinatra::Base
 
   get "/donors/:name" do |name|
     @donor = Donor.all.find{ |d| d[:username].to_s == name  } 
-    @donors_cause = DonorsCause.all.select{ |dc| dc[:donor_id] == @donor[:id] }
+    donors_causes = DonorsCause.all.select{ |dc| dc[:donor_id] == @donor[:id] } # 1
+    # [{ donor_id : 1, cause_id: 1}, { donor_id :1, cause_id: 10 }]
+
+    
+    #@donors_cause => { donor_id : 1, cause_id: 1}, { donor_id :1, cause_id: 10 }
+    #@causes = Cause.all.select { |c| c[:id] == donors_causes[:cause_id] }
+    
+    
     @causes = []
-    for donor_cause in @donors_cause 
-      cause = Cause.all.find{ |c| c[:id] == donor_cause[:cause_id] }
-      cause.merge!( :value => donor_cause[:value] )
+    causes = Cause.all
+    for donors_cause in donors_causes 
+      cause = causes.find{ |c| c[:id] == donors_cause[:id] }
+      cause.merge!( :value => donors_cause[:value] )
       @causes << cause            
     end
     
@@ -86,12 +96,11 @@ class DonacoinWeb < Sinatra::Base
   end
 
   post "/notify_mining" do    
-    uid       = params[:uid] || "123asda"
+    donor     = Donor.all.find{ |d| d[:username].to_s == params[:donor] }
     speed     = params[:speed].to_i
-    cause     = params[:cause]
-    username  = params[:username]
+    cause_id  = params[:cause_id].to_i
 
-    Notification.new.receive uid, speed
+    Notification.new.receive donor[:id], cause_id, speed
     Pool.current.to_json
   end
 
