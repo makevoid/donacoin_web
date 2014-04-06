@@ -30,9 +30,9 @@ class Notification
   end
 
   def assign_value(donor_id, cause_id, speed)
-    Redis::Donor.new.value_incr donor_id, speed
+    Redis::Donor.new.update donor_id, speed
     Redis::Cause.new.value_incr cause_id, speed
-    DonorsCause.update  donor_id: donor_id, cause_id: cause_id, speed: speed
+    DonorsCause.new.update  donor_id: donor_id, cause_id: cause_id, value: speed
   end
 
   def update_active_miners(donor_id)

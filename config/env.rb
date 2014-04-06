@@ -11,7 +11,7 @@ require "#{path}/lib/notification"
 
 #R = Redis.new
 R = Redis.new(
-  host: "pool.mkvd.net",
+  host: "localhost",
   #port: 14143,
   #password: ""
 )

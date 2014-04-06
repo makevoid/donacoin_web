@@ -15,15 +15,27 @@ class Redis
     def create
       count = R.incr "donors_count"
       R.hset "donors:#{count}", "value", 0
-      count
+      count      
     end
+
+    def update(donor_id, val)
+      exists = Donors.instance.all.any?{ |d| d[:id] == donor_id }
+      if exists      
+        value_incr donor_id, val
+      else
+        #TODO: Implement create as donors_causes do
+      end 
+    end
+
 
     def value_incr(donor_id, val)
       R.hincrby "donors:#{donor_id}", "value", val
+      Donors.instance.update donor_id, value_get(donor_id)     
     end
 
     def value_get(donor_id)
-      R.hget "donors:#{donor_id}", "value"
+      value = R.hget "donors:#{donor_id}", "value"
+      value.to_i
     end
   end
 

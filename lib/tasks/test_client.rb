@@ -9,7 +9,7 @@ host     = "localhost:3000"
 #host     = "mkvd-32284.euw1.nitrousbox.com:3000"
 
 
-cause_id = "1"
+cause_id = "2"
 donor = "virtuoid"
 
 URL         = "/miner"

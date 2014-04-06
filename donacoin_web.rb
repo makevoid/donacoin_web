@@ -58,8 +58,9 @@ class DonacoinWeb < Sinatra::Base
     
     @causes = []
     causes = Cause.all
-    for donors_cause in donors_causes 
-      cause = causes.find{ |c| c[:id] == donors_cause[:id] }
+    puts causes
+    for donors_cause in donors_causes       
+      cause = causes.find{ |c| c[:id] == donors_cause[:cause_id] }
       cause.merge!( :value => donors_cause[:value] )
       @causes << cause            
     end
@@ -99,7 +100,6 @@ class DonacoinWeb < Sinatra::Base
     donor     = Donor.all.find{ |d| d[:username].to_s == params[:donor] }
     speed     = params[:speed].to_i
     cause_id  = params[:cause_id].to_i
-
     Notification.new.receive donor[:id], cause_id, speed
     Pool.current.to_json
   end

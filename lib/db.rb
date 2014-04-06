@@ -33,6 +33,8 @@ class DB
     @collection << entry
   end
 
+  
+
 end
 
 
@@ -45,6 +47,12 @@ class Causes < DB
   def initialize
     @db_name = "causes"
     read
+  end
+
+  def update(cause_id, value)
+    val = @collection.find { |v| v[:id] == cause_id }
+    val.each { |k,v| val[k] = value if k == :value }
+    write
   end
 
 end
@@ -60,6 +68,12 @@ class Donors < DB
     read
   end
 
+  def update(donor_id, value)
+    val = @collection.find { |v| v[:id] == donor_id }
+    val.each { |k,v| val[k] = value if k == :value }
+    write
+  end
+
 end
 
 class DonorsCauses < DB
@@ -71,6 +85,12 @@ class DonorsCauses < DB
   def initialize
     @db_name = "donors_causes"
     read
+  end
+
+  def update(hash)    
+    val = @collection.find { |v| v[:donor_id] == hash[:donor_id] && v[:cause_id] == hash[:cause_id]}
+    val.each { |k,v| val[k] = hash[:value] if k == :value }
+    write
   end
 
 end
