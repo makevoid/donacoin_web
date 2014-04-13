@@ -1,15 +1,38 @@
+.page.row-fluid.highlight
+  .span7.page-left.blank
+    .row-fluid
+      %h1
+        Cause: #{@cause[:label]}
+        %span.small [#{@cause[:name]}]
+
+      %p #{@cause[:desc]}
+      %span.small Donated #{Utils.format_val @cause[:value] }  
+      %section
+        %h1 Top Donors
+
+        %ul
+          - for donor in @donors
+            %li
+              %a{ href: "/donors/#{donor[:username]}" }
+                =donor[:username]
+              (#{Utils.format_val donor[:value_cause]}  donated)
+
+  .span3.page-right.blank
+    .row-fluid
+      .row-fluid
+        %h4.muted
+          %i.fa.fa-angle-down.muted
+          More about
+        .hr
+        = haml :_infos_main
+        .separator15
+
+
 .row-fluid
-  %h1
-    Cause: #{@cause[:label]}
-    %span.small [#{@cause[:name]}]
-
-  %p #{@cause[:desc]}
-
-  %section
-    %h1 Top Donors
-
-    %ul
-      - for value in @values
-        %li
-          %a{ href: "/donors/#{value[:username]}" }= value[:username]
-          (#{value[:value]} &euro;/c donated)
+  %p Do you have a cause / project you want to register? Are you a charity/onlus/ngo?
+  .hr
+  .separator15
+  %a.row-fluid.centered-content.btn.btn-medium.btn-primary{ href: "/causes/register" }
+    %i.fa.fa-pencil
+    Register a Cause
+              

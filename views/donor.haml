@@ -11,13 +11,16 @@
         Rank:
         %span.rank 1st
         %span on #{Donor.all.count} total donors
-      %p Total donations: #{@donor[:value_total] || 0} Euro
+      %p Total donations: #{Utils.format_val(@donor[:value]) || 0} 
       // %p First donation on: Jan 26, 2014
 
       %h2 Causes donated to:
 
       - for cause in @causes
-        %p #{cause[:label]}: #{cause[:value]}      
+        %p 
+          %a{ href: "/causes/#{cause[:name]}" }
+            #{cause[:label]}: 
+          #{Utils.format_val cause[:value_cause] } / #{Utils.format_val cause[:value] }       
 
 
   .span3.page-right.blank
