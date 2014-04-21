@@ -19,6 +19,11 @@ class DonacoinWeb < Sinatra::Base
     haml :causes
   end
 
+  get "/service/causes" do
+    @causes = Cause.all
+    @causes.to_json
+  end
+
   get "/causes/register" do
     "soon!, meanwhile send a mail to makevoid@gmail.com"
 
@@ -110,6 +115,8 @@ class DonacoinWeb < Sinatra::Base
     Notification.new.receive donor[:id], cause_id, speed
     Pool.current.to_json
   end
+
+
 
 end
 
