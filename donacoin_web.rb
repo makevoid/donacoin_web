@@ -109,10 +109,12 @@ class DonacoinWeb < Sinatra::Base
   end
 
   post "/notify_mining" do    
-    donor     = Donor.all.find{ |d| d[:username].to_s == params[:donor] }
-    speed     = params[:speed].to_i
-    cause_id  = params[:cause_id].to_i
-    Notification.new.receive donor[:id], cause_id, speed
+    donor = Donor.all.find{ |d| d[:username].to_s == params[:donor] }
+    speed = params[:speed].to_i
+    cause = Cause.all.find{ |c| c[:name].to_s == params[:cause] }
+    #cause_id  = params[:cause_id].to_i
+
+    Notification.new.receive donor[:id], cause[:id], speed
     Pool.current.to_json
   end
 

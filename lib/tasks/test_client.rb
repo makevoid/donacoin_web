@@ -9,7 +9,7 @@ host     = "localhost:3000"
 #host     = "mkvd-32284.euw1.nitrousbox.com:3000"
 
 
-cause_id = "2"
+cause = "wikipedia"
 donor = "virtuoid"
 
 URL         = "/miner"
@@ -18,9 +18,9 @@ uri         = URI.parse "http://#{host}#{NOTIFY_URL}"
 
 
 params = { 
-  speed:    12, 
-  donor:    donor, 
-  cause_id: cause_id,  
+  speed: 12, 
+  donor: donor, 
+  cause: cause,  
 }
 
 while true
